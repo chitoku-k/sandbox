@@ -1,6 +1,10 @@
 name: OIDC Workflow
 on:
   workflow_dispatch:
+    inputs:
+      audience:
+        description: The aud claim
+        required: true
 
 permissions:
   id-token: write
@@ -13,18 +17,13 @@ jobs:
       - name: Set up ID token
         uses: actions/github-script@v6
         id: id-token
+        env:
+          AUDIENCE: ${{ inputs.audience }}
         with:
           debug: true
+          result-encoding: string
           script: |
-            const runtimeToken = process.env.ACTIONS_RUNTIME_TOKEN;
-            const requestUrl = process.env.ACTIONS_ID_TOKEN_REQUEST_URL;
-            core.setOutput('RUNTIME_TOKEN', runtimeToken);
-            core.setOutput('ID_TOKEN_URL', requestUrl);
+            return await core.getIDToken(process.env.AUDIENCE);
       - name: Print ID token in base64
         run: |
-          curl -sSf \
-            -H "Authorization: Bearer ${{ steps.id-token.outputs.RUNTIME_TOKEN }}" \
-            -H "Accept: application/json; api-version=2.0" \
-            -H 'Content-Type: application/json' \
-            -d '{}' \
-            '${{ steps.id-token.outputs.ID_TOKEN_URL }}' | jq -r .value | base64
+          base64 <<< '${{ steps.id-token.outputs.result }}'
