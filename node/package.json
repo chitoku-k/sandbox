@@ -1,0 +1,7 @@
+{
+  "name": "@chitoku-k/sandbox",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "yarn@4.11.0",
+  "license": "UNLICENSED"
+}

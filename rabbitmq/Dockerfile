@@ -1,0 +1,4 @@
+FROM ubuntu:latest
+ARG RABBITMQ_MESSAGE_DEDUPLICATION_VERSION=0.7.0
+ARG RABBITMQ_MESSAGE_DEDUPLICATION_FILENAME=plugins-rmqv4.0.x-erl26.2-elx1.16.zip
+ADD https://github.com/noxdafox/rabbitmq-message-deduplication/releases/download/$RABBITMQ_MESSAGE_DEDUPLICATION_VERSION/$RABBITMQ_MESSAGE_DEDUPLICATION_FILENAME /usr/src/

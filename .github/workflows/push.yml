@@ -1,0 +1,69 @@
+name: CI Workflow
+on:
+  push:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  go:
+    name: Set up Go
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go/go.mod
+      - name: Show version
+        working-directory: go
+        run: go version
+
+  node:
+    name: Set up Node.js
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: node/.node-version
+      - name: Show version
+        working-directory: node
+        run: node --version
+
+  php:
+    name: Set up PHP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version-file: php/.php-version
+      - name: Show version
+        working-directory: php
+        run: |
+          php --version
+
+  rust:
+    name: Set up Rust
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          rust-src-dir: rust
+          components: clippy
+      - name: Show versions
+        working-directory: rust
+        run: |
+          rustc --version
+          cargo --version
+          cargo clippy --version

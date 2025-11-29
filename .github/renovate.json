@@ -1,0 +1,39 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", ":disableDependencyDashboard"],
+  "packageRules": [
+    {
+      "matchDepNames": ["go", "golang"],
+      "groupName": "go",
+      "minimumGroupSize": 2
+    },
+    {
+      "matchDepNames": ["node"],
+      "groupName": "node",
+      "minimumGroupSize": 2
+    },
+    {
+      "matchDepNames": ["rust"],
+      "groupName": "rust",
+      "minimumGroupSize": 2
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
+      "matchStrings": ["ARG\\s*RABBITMQ_MESSAGE_DEDUPLICATION_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"],
+      "depNameTemplate": "rabbitmq-message-deduplication",
+      "lookupNameTemplate": "noxdafox/rabbitmq-message-deduplication",
+      "datasourceTemplate": "github-tags"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)rust-toolchain\\.toml$/"],
+      "matchStrings": ["channel\\s*=\\s*\"(?<currentValue>\\d+\\.\\d+(\\.\\d+)?)\""],
+      "depNameTemplate": "rust",
+      "lookupNameTemplate": "rust-lang/rust",
+      "datasourceTemplate": "github-tags"
+    }
+  ]
+}
