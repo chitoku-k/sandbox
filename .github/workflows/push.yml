@@ -31,9 +31,16 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: node/.node-version
-      - name: Show version
+      - name: Install corepack
         working-directory: node
-        run: node --version
+        run: |
+          npm install -g -f corepack
+          corepack enable
+      - name: Show versions
+        working-directory: node
+        run: |
+          node --version
+          yarn --version
 
   php:
     name: Set up PHP
