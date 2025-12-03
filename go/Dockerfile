@@ -1,1 +1,1 @@
-FROM golang:1.24.10-trixie
+FROM golang:1.25.5-trixie
