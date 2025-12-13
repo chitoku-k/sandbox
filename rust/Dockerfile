@@ -1,1 +1,1 @@
-FROM rust:1.90.0-trixie
+FROM rust:1.92.0-trixie
