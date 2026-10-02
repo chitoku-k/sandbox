@@ -1,1 +1,1 @@
-FROM php:8.4.15-fpm-trixie
+FROM php:8.5.11-fpm-trixie
