@@ -8,7 +8,7 @@ workflows:
     '.github/workflows/push.yml':
         - 'actions-rust-lang/setup-rust-toolchain@v1.17.0'
         - 'actions/checkout@v4.4.0'
-        - 'actions/setup-go@v6.5.0'
+        - 'actions/setup-go@v7.0.0'
         - 'actions/setup-node@v6.5.0'
         - 'shivammathur/setup-php@2.40.0'
 dependencies:
@@ -29,9 +29,9 @@ dependencies:
         commit: 'sha1-d7906e4ad0b1822421a7e6a35d5ca353c962f410'
         owner_id: 44036562
         repo_id: 205262760
-    'actions/setup-go@v6.5.0':
-        ref: 'v6.5.0'
-        commit: 'sha1-924ae3a1cded613372ab5595356fb5720e22ba16'
+    'actions/setup-go@v7.0.0':
+        ref: 'v7.0.0'
+        commit: 'sha1-b7ad1dad31e06c5925ef5d2fc7ad053ef454303e'
         owner_id: 44036562
         repo_id: 192624594
     'actions/setup-node@v6.5.0':
